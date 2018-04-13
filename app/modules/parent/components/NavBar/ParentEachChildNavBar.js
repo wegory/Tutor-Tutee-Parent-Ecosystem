@@ -30,7 +30,7 @@ import Settings from "./SideMenu/Settings";
 
 const { signOut } = auth;
 
-class NavBar extends React.Component {
+export default class NavBar extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -173,5 +173,3 @@ class NavBar extends React.Component {
     );
   }
 }
-
-export default connect(null, { signOut })(NavBar);

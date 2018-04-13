@@ -27,6 +27,8 @@ import { Actions } from "react-native-router-flux";
 import { Icon, ThemeProvider } from "react-native-material-ui";
 import { actions as auth } from "./index";
 import Settings from "./SideMenu/Settings";
+import AddTutee from "../AddTutee/AddTutee";
+import AddTutor from "../AddTutor/AddTutor";
 
 const { signOut } = auth;
 
@@ -35,11 +37,15 @@ class NavBar extends React.Component {
     super();
     this.state = {
       modalVisible: false,
+      tuteeFormModalVisible: false,
+      tutorFormModalVisible: false,
       username: "Loading",
       profileImage: null,
       role: null
     };
     this.setModalVisible = this.setModalVisible.bind(this);
+    this.setTuteeFormModalVisible = this.setTuteeFormModalVisible.bind(this);
+    this.setTutorFormModalVisible = this.setTutorFormModalVisible.bind(this);
     this.onSignOut = this.onSignOut.bind(this);
     this.setName = this.setName.bind(this);
     this.getUsername = this.getUsername.bind(this);
@@ -110,6 +116,14 @@ class NavBar extends React.Component {
     this.setState({ modalVisible: visible });
   }
 
+  setTuteeFormModalVisible(visible) {
+    this.setState({ tuteeFormModalVisible: visible });
+  }
+
+  setTutorFormModalVisible(visible) {
+    this.setState({ tutorFormModalVisible: visible });
+  }
+
   onSignOut() {
     this.props.signOut(this.onSuccess.bind(this), this.onError.bind(this));
   }
@@ -144,56 +158,87 @@ class NavBar extends React.Component {
     const displayImage = <Image style={styles.image} source={profileImage} />;
     const display =
       typeof this.state.profileImage == null ? displayInitials : displayImage;
-
     return (
       <View>
-        <Modal
-          isVisible={this.state.modalVisible}
-          animationIn="slideInLeft"
-          animationOut="slideOutRight"
-          onBackdropPress={() => this.setModalVisible(!this.state.modalVisible)}
-          backdropOpacity={0.6}
-          swipeDirection="left"
-          style={styles.modal}
-          onSwipe={() => {
-            this.setModalVisible(false);
-          }}
-          onSwipeThreshold={20}
-          animationOutTiming={200}
-          animationInTiming={600}
-          backdropTransitionOutTiming={100}
-          backdropTransitionInTiming={600}
-        >
-          <View style={styles.popout}>
-            {/* <Image
+        {this.state.tuteeFormModalVisible &&
+          this.state.tutorFormModalVisible == false && (
+            <AddTutee controlVisible={this.setTuteeFormModalVisible} />
+          )}
+        {this.state.tutorFormModalVisible &&
+          this.state.tuteeFormModalVisible == false && (
+            <AddTutor controlVisible={this.setTutorFormModalVisible} />
+          )}
+        {!this.state.tuteeFormModalVisible &&
+          !this.state.tutorFormModalVisible && (
+            <Modal
+              isVisible={this.state.modalVisible}
+              animationIn="slideInLeft"
+              animationOut="slideOutRight"
+              onBackdropPress={() =>
+                this.setModalVisible(!this.state.modalVisible)
+              }
+              backdropOpacity={0.6}
+              swipeDirection="left"
+              style={styles.modal}
+              onSwipe={() => {
+                this.setModalVisible(false);
+              }}
+              onSwipeThreshold={20}
+              animationOutTiming={50}
+              animationInTiming={600}
+              backdropTransitionOutTiming={0}
+              backdropTransitionInTiming={600}
+            >
+              <View style={styles.popout}>
+                {/* <Image
                 style={styles.image}
                 source={require("../../../assets/images/logo.png")}
               /> */}
-            <View style={styles.imageContainer}>
-              {/* <View style={styles.imagePlaceholder} /> */}
-              {/* {displayImage} */}
-              {this.state.profileImage == null ? displayInitials : displayImage}
-              {/* <Image
+                <View style={styles.imageContainer}>
+                  {/* <View style={styles.imagePlaceholder} /> */}
+                  {/* {displayImage} */}
+                  {this.state.profileImage == null
+                    ? displayInitials
+                    : displayImage}
+                  {/* <Image
                 style={styles.image}
                 source={{
                   uri: this.state.profileImage
                 }}
               /> */}
-            </View>
-            <View style={styles.menuContainer}>
-              <Text style={styles.name}>{this.state.username}</Text>
-              <TouchableOpacity onPress={() => Actions.Settings()}>
-                <Text style={styles.menuContent}>Add Child</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => Actions.Settings()}>
-                <Text style={styles.menuContent}>Settings</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={this.onSignOut}>
-                <Text style={styles.menuContent}>Sign Out</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </Modal>
+                </View>
+                <View style={styles.menuContainer}>
+                  <Text style={styles.name}>{this.state.username}</Text>
+                  <TouchableOpacity
+                    onPress={() => {
+                      this.setModalVisible(!this.state.modalVisible);
+                      this.setTuteeFormModalVisible(
+                        !this.state.tuteeFormModalVisible
+                      );
+                    }}
+                  >
+                    <Text style={styles.menuContent}>Add Child</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => {
+                      this.setModalVisible(!this.state.modalVisible);
+                      this.setTutorFormModalVisible(
+                        !this.state.tutorFormModalVisible
+                      );
+                    }}
+                  >
+                    <Text style={styles.menuContent}>Add Tutor</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={() => Actions.Settings()}>
+                    <Text style={styles.menuContent}>Settings</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={this.onSignOut}>
+                    <Text style={styles.menuContent}>Sign Out</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </Modal>
+          )}
         <ThemeProvider>
           <View style={styles.container}>
             <TouchableOpacity

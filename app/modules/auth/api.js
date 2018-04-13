@@ -39,7 +39,7 @@ export function getUser(user, callback) {
       const data = { exists, user };
       callback(true, data, null);
     })
-    .catch(error => callback(false, null, error));
+    .catch(callback(false, null, "Your child is already added!"));
 }
 
 //Send Password Reset Email
@@ -109,44 +109,63 @@ export function createUser(userId, data, callback) {
   // console.log(combine);
   const create = {};
   if (data.role === "tutee") {
-    data["assignment"] = [];
-    data["parent"] = [];
-    data["tutor"] = [];
-    data["tuition"] = [];
+    // data["assignment"] = [];
+    // data["parent"] = [];
+    // data["tutor"] = [];
+    // data["tuition"] = [];
     data["addTuteeKey"] = combine;
-    create["/addChildKey/" + combine] = { uid: data.uid };
-    // database
-    //   .ref("addChildKey")
-    //   .child(combine)
-    //   .set({ uid: data.uid })
-    //   .catch(error => callback(false, null, { message: error }));
+    database
+      .ref("addChildKey")
+      .child(combine)
+      .set({ uid: data.uid })
+      .then(
+        database
+          .ref("users")
+          .child(userId)
+          .set({ ...data })
+          .catch(error => callback(false, null, { message: error }))
+      )
+      .then(() => callback(true, data, null))
+      .catch(error => callback(false, null, { message: error }));
   } else if (data.role === "parent") {
-    data["tutee"] = [];
-    data["tutor"] = [];
-    data["tuition"] = [];
-    data["payment"] = [];
+    // data["tutee"] = [];
+    // data["tutor"] = [];
+    // data["tuition"] = [];
+    // data["payment"] = [];
+    database
+      .ref("users")
+      .child(userId)
+      .set({ ...data })
+      .then(() => callback(true, data, null))
+      .catch(error => callback(false, null, { message: error }));
   } else {
-    data["assignment"] = [];
-    data["parent"] = [];
-    data["tutee"] = [];
-    data["tuition"] = [];
-    data["payment"] = [];
+    // data["assignment"] = [];
+    // data["parent"] = [];
+    // data["tutee"] = [];
+    // data["tuition"] = [];
+    // data["payment"] = [];
     data["addTutorKey"] = combine;
-    create["/addChildKey/" + combine] = { uid: data.uid };
-    // database
-    //   .ref("addTutorKey")
-    //   .child(combine)
-    //   .set({ uid: data.uid })
-    //   .catch(error => callback(false, null, { message: error }));
+    database
+      .ref("addTutorKey")
+      .child(combine)
+      .set({ uid: data.uid })
+      .then(
+        database
+          .ref("users")
+          .child(userId)
+          .set({ ...data })
+          .catch(error => callback(false, null, { message: error }))
+      )
+      .then(() => callback(true, data, null))
+      .catch(error => callback(false, null, { message: error }));
   }
-  create["/users/" + userId] = { ...data };
+
   // database
   //   .ref("users")
   //   .child(userId)
   //   .set({ ...data })
-  //   .then(() => callback(true, data, null)) //return
+  //   .then(() => callback(true, data, null))
   //   .catch(error => callback(false, null, { message: error }));
-  database.ref().set(create);
 }
 
 //Check if the user exist in the realtime database

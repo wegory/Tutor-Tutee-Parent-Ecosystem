@@ -1,15 +1,15 @@
 import { combineReducers } from "redux";
 
 import { reducer as authReducer } from "../modules/auth";
-import { reducer as tutorMainReducer } from "../modules/tutor";
-import { reducer as tuteeMainReducer } from "../modules/tutee";
-import { reducer as parentMainReducer } from "../modules/parent";
+import { reducer as tutorReducer } from "../modules/tutor";
+import { reducer as tuteeReducer } from "../modules/tutee";
+import { reducer as parentReducer } from "../modules/parent";
 // Combine all the reducers
 const rootReducer = combineReducers({
   authReducer,
-  tutorMainReducer,
-  tuteeMainReducer,
-  parentMainReducer
+  tutorReducer,
+  tuteeReducer,
+  parentReducer
 });
 
 export default rootReducer;

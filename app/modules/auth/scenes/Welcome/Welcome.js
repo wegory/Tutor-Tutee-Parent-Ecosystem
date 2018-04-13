@@ -24,6 +24,7 @@ class Welcome extends React.Component {
     this.onSuccess = this.onSuccess.bind(this);
     this.onError = this.onError.bind(this);
     this.onSignInWithFacebook = this.onSignInWithFacebook.bind(this);
+
     // this.getRole = this.getRole.bind(this);
   }
 
@@ -57,6 +58,7 @@ class Welcome extends React.Component {
 
   render() {
     // console.log("Welcome, render, role: " + JSON.stringify(this.getRole()));
+    console.log("welcome, props: " + JSON.stringify(this.props));
     return (
       <View style={styles.container}>
         <View style={styles.topContainer}>

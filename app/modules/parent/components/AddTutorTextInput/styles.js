@@ -9,11 +9,10 @@ const styles = StyleSheet.create({
   },
 
   inputContainer: {
-    width: windowWidth - 40,
-    height: normalize(65),
-    fontSize: fontSize.regular + 2,
+    width: 190,
+    height: normalize(45),
+    fontSize: fontSize.regular,
     fontFamily: fontFamily.bold,
-    color: "black",
     borderBottomColor: "#A5A7A9"
   }
 });

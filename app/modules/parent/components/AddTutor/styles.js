@@ -12,13 +12,6 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   },
 
-  tuteeNavBarContainer: {
-    width: "100%",
-    backgroundColor: "#81C054",
-    height: normalize(70),
-    flexDirection: "row"
-  },
-
   menu: {
     width: 64,
     color: color.white,
@@ -52,7 +45,7 @@ const styles = StyleSheet.create({
   },
 
   menuContent: {
-    marginTop: 14,
+    marginTop: 17,
     fontSize: fontSize.large - 5,
     lineHeight: fontSize.large - 5,
     fontFamily: fontFamily.regular,
