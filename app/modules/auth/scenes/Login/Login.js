@@ -82,6 +82,7 @@ class Login extends React.Component {
   }
 
   render() {
+    // console.log("error login: " + JSON.stringify(error));
     return (
       <Form
         fields={fields}

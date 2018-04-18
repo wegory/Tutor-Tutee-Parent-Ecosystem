@@ -10,7 +10,7 @@ export default class extends React.Component {
         <View style={styles.wrapper}>
           <Image
             style={styles.image}
-            source={require("../../assets/images/logo.png")}
+            source={require("../../assets/images/owl.png")}
           />
           <Text style={styles.title}>Just a sec...</Text>
         </View>

@@ -145,14 +145,6 @@ export default class NavBar extends React.Component {
     const displayImage = <Image style={styles.image} source={profileImage} />;
     const display =
       typeof this.state.profileImage == null ? displayInitials : displayImage;
-    const displayRole =
-      this.state.role == "tutee" ? (
-        <Text style={styles.header}>Genius</Text>
-      ) : this.state.role == "tutor" ? (
-        <Text style={styles.header}>Student's Name</Text>
-      ) : (
-        <Text style={styles.header}>Child's Name</Text>
-      );
 
     return (
       <View>
@@ -165,7 +157,7 @@ export default class NavBar extends React.Component {
             >
               <Icon name="arrow-back" style={[styles.arrowBack]} size={30} />
             </TouchableOpacity>
-            {displayRole}
+            <Text style={styles.header}>{this.props.username}</Text>
             <Icon name="search" style={[styles.search]} size={30} />
           </View>
         </ThemeProvider>

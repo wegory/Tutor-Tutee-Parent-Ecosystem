@@ -104,11 +104,20 @@ export function createUser(userId, data, callback) {
   const midFour = now.slice(5, 9);
   // console.log("last Four: " + lastFour + "\nmidFour: " + midFour);
   const addThem = (+lastFour + +midFour) % 1000;
-  const username = data.username.replace(/\s+/g, "");
-  const combine = username + addThem.toString();
+  const username =
+    data.username != undefined ? data.username.replace(/\s+/g, "") : null;
+  const combine =
+    data.username != undefined ? username + addThem.toString() : null;
   // console.log(combine);
   const create = {};
-  if (data.role === "tutee") {
+  if (data.role === undefined) {
+    database
+      .ref("users")
+      .child(userId)
+      .set({ ...data })
+      .then(() => callback(true, data, null))
+      .catch(error => callback(false, null, { message: error }));
+  } else if (data.role === "tutee") {
     // data["assignment"] = [];
     // data["parent"] = [];
     // data["tutor"] = [];
@@ -172,7 +181,7 @@ export function createUser(userId, data, callback) {
 export function checkUserExist(user, fbData, callback) {
   console.log("checkUserExist");
   console.log("user: ");
-  console.log(JSON.stringify(user));
+  console.log("fbData " + JSON.stringify(fbData));
   console.log(user.email);
   database
     .ref("/users/" + user.uid)
@@ -195,6 +204,7 @@ export function checkUserExist(user, fbData, callback) {
       } else {
         fbData.uid = user.uid;
         fbData.email = user.email;
+        // fbData.profileImage = user.profileImage;
         var data = {
           newUser: !exists,
           user: fbData

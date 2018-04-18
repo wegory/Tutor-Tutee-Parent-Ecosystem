@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 80 / 2,
-    backgroundColor: "#57C960"
+    backgroundColor: "#FFA500"
     // resizeMode
   },
 

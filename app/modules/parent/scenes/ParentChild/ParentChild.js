@@ -10,31 +10,84 @@ var {
 import { Button } from "react-native-elements";
 import { Actions } from "react-native-router-flux";
 import { connect } from "react-redux";
-
+import store from "../../../../redux/store";
 import styles from "./styles";
-
-import { addAssignment } from "../../actions";
+import { getChildrenForDisplay, checkChildChanges } from "../../api";
+import ChildThumbnail from "../../components/ChildThumbnail/ChildThumbnail";
 
 export default class ParentChild extends React.Component {
-  // constructor() {
-  //   super();
-  //   this.state = {};
+  constructor() {
+    super();
+    this.state = {
+      collectionChildren: {}
+    };
 
-  //   this.onSignOut = this.onSignOut.bind(this);
+    this.onGetChildren = this.onGetChildren.bind(this);
+    this.setChildren = this.setChildren.bind(this);
+    this.renderThumbnail = this.renderThumbnail.bind(this);
+  }
+
+  componentDidMount() {
+    this.onGetChildren();
+    _this = this;
+    checkChildChanges(function(changed) {
+      if (changed) {
+        console.log("hi");
+        _this.onGetChildren();
+      }
+    });
+  }
+
+  // componentWillMount() {
+
   // }
 
-  // onSignOut() {
-  //   this.props.signOut(this.onSuccess.bind(this), this.onError.bind(this));
-  // }
+  setChildren(collectionChildren) {
+    this.setState({ collectionChildren: collectionChildren });
+  }
 
-  // onSuccess() {
-  //   Actions.reset("Auth");
-  // }
+  onGetChildren() {
+    var _this = this;
+    console.log("onGetChildren");
+    getChildrenForDisplay(function(collection) {
+      console.log(
+        "collectionChildren in getChildren: " + JSON.stringify(collection)
+      );
+      _this.setChildren(collection);
+    });
+  }
 
-  // onError(error) {
-  //   Alert.alert("Oops!", error.message);
-  // }
+  renderThumbnail() {
+    const thumbnails = this.state.collectionChildren;
+    const keys = Object.keys(thumbnails);
+    const results = [];
+
+    const thumbnailsController = keys.map((key, index) => {
+      console.log("keys in renderThumbnail: " + key);
+      results.push(
+        <ChildThumbnail
+          key={key}
+          profileImage={thumbnails[`${key}`].profileImage}
+          username={thumbnails[`${key}`].username}
+          childUID={key}
+        />
+      );
+    });
+    if (results == []) {
+      results.push(
+        <Text style={styles.emptyText}>
+          Connect to your child by click on the menu on the top right button!
+        </Text>
+      );
+    }
+    return results;
+  }
+
   render() {
+    console.log(
+      "parentChild state: " + JSON.stringify(this.state.collectionChildren)
+    );
+    console.log(store.getState());
     return (
       <ScrollView
         contentContainerStyle={styles.contentContainer}
@@ -42,71 +95,7 @@ export default class ParentChild extends React.Component {
         alwaysBounceVertical={true}
         endFillColor="#EEEEEE"
       >
-        <TouchableOpacity onPress={() => Actions.ParentEachChildNav()}>
-          <View style={styles.taskContainer}>
-            <View style={styles.imageContainer}>
-              <Image
-                style={styles.image}
-                source={require("../../../../assets/images/profilePicture.png")}
-              />
-            </View>
-            <View style={styles.infoContainer}>
-              <View style={styles.infoCol1}>
-                <Text style={styles.infoTitle}>Problem 1 Ex 5a, 6b, 9a</Text>
-                <Text style={styles.infoTutor}>Set by Mr Chia</Text>
-                <Text style={styles.infoDueDate}>Due on: 5th March</Text>
-              </View>
-              <View style={styles.infoCol2}>
-                <TouchableOpacity
-                  style={styles.infoButton}
-                  onPress={() => addAssignment()}
-                >
-                  <Text style={styles.buttonText}>Done</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          </View>
-        </TouchableOpacity>
-        <View style={styles.taskContainer}>
-          <View style={styles.imageContainer}>
-            <Image
-              style={styles.image}
-              source={require("../../../../assets/images/profilePicture.png")}
-            />
-          </View>
-          <View style={styles.infoContainer}>
-            <View style={styles.infoCol1}>
-              <Text style={styles.infoTitle}>Problem 1 Ex 5a, 6b, 9a</Text>
-              <Text style={styles.infoTutor}>Set by Mr Chia</Text>
-              <Text style={styles.infoDueDate}>Due on: 5th March</Text>
-            </View>
-            <View style={styles.infoCol2}>
-              <TouchableOpacity style={styles.infoButton}>
-                <Text style={styles.buttonText}>Done</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-        <View style={styles.taskContainer}>
-          <View style={styles.imageContainer}>
-            <Image
-              style={styles.image}
-              source={require("../../../../assets/images/profilePicture.png")}
-            />
-          </View>
-          <View style={styles.infoContainer}>
-            <View style={styles.infoCol1}>
-              <Text style={styles.infoTitle}>Problem 1 Ex 5a, 6b, 9a</Text>
-              <Text style={styles.infoTutor}>Set by Mr Chia</Text>
-              <Text style={styles.infoDueDate}>Due on: 5th March</Text>
-            </View>
-            <View style={styles.infoCol2}>
-              <TouchableOpacity style={styles.infoButton}>
-                <Text style={styles.buttonText}>Done</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
+        {this.renderThumbnail()}
       </ScrollView>
     );
   }

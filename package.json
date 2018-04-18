@@ -25,6 +25,8 @@
     "moment": "^2.21.0",
     "react": "^16.0.0",
     "react-native": "^0.52.0",
+    "react-native-action-button": "^2.8.4",
+    "react-native-datepicker": "^1.7.1",
     "react-native-drawer": "^2.5.0",
     "react-native-elements": "^0.19.0",
     "react-native-keyboard-spacer": "^0.4.1",

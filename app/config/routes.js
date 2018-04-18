@@ -74,7 +74,9 @@ export default class extends React.Component {
       .then(res => {
         res = JSON.parse(res);
         console.log("res: " + JSON.stringify(res));
-        this.setRole(res.user.role);
+        if (res !== null) {
+          this.setRole(res.user.role);
+        }
       })
       .catch(error => {
         console.log(error);

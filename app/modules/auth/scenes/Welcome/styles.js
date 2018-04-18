@@ -16,22 +16,23 @@ const styles = StyleSheet.create({
     paddingBottom: padding * 2,
     justifyContent: "center",
     alignItems: "center",
-    // backgroundColor: "#FF553F"
     backgroundColor: "#81C054"
   },
 
   image: {
-    height: 150,
-    width: 150,
+    height: 200,
+    width: 200,
     // backgroundColor: color.grey,
-    backgroundColor: "#81C054",
+    // backgroundColor: "#81C054",
+    backgroundColor: "transparent",
     marginBottom: padding,
     resizeMode
   },
 
   title: {
-    fontSize: fontSize.large + 7,
-    lineHeight: fontSize.large + 7,
+    marginTop: 5,
+    fontSize: fontSize.large - 2,
+    lineHeight: fontSize.large - 2,
     fontFamily: fontFamily.bold,
     color: color.white,
     letterSpacing: 1

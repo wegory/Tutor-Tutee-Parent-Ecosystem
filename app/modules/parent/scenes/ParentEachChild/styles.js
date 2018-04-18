@@ -65,6 +65,17 @@ const styles = StyleSheet.create({
     marginBottom: 7
   },
 
+  emptyText: {
+    // marginTop: 10,
+    textAlign: "center",
+    fontSize: fontSize.regular,
+    lineHeight: fontSize.regular,
+    fontFamily: fontFamily.bold,
+    color: color.black,
+    letterSpacing: 1,
+    marginBottom: 7
+  },
+
   infoTutor: {
     fontSize: fontSize.small,
     lineHeight: fontSize.small,

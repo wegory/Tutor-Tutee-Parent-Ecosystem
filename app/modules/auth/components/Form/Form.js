@@ -45,7 +45,7 @@ class Form extends React.Component {
 
   extractData(data) {
     const retData = {};
-
+    console.log("extractData error? : " + JSON.stringify(data));
     Object.keys(data).forEach(function(key) {
       if (key !== "error") {
         let { value } = data[key];
@@ -68,9 +68,9 @@ class Form extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.wrapper}>
-          {!isEmpty(this.state.error["general"]) && (
+          {/* {!isEmpty(this.state.error["general"]) && (
             <Text style={styles.errorText}>{this.state.error["general"]}</Text>
-          )}
+          )} */}
 
           {fields.map((data, idx) => {
             let { key, label, placeholder, autoFocus, secureTextEntry } = data;

@@ -59,27 +59,7 @@ class AddTutor extends React.Component {
     this.onSuccess = this.onSuccess.bind(this);
     this.onError = this.onError.bind(this);
     this.setModalVisible = this.setModalVisible.bind(this);
-    // this.setChildren = this.setChildren.bind(this);
-    // this.onGetChildren = this.onGetChildren.bind(this);
   }
-
-  // componentDidMount() {
-  //   this.onGetChildren();
-  // }
-
-  // setChildren(collectionChildren) {
-  //   this.setState({ collectionChildren: collectionChildren });
-  // }
-
-  // onGetChildren() {
-  //   var that = this;
-  //   getChildren(function(collection) {
-  //     console.log(
-  //       "collectionChildren in getChildren: " + JSON.stringify(collection)
-  //     );
-  //     that.setChildren(collection);
-  //   });
-  // }
 
   setModalVisible(visible) {
     console.log("called by onSucess of adding Child");

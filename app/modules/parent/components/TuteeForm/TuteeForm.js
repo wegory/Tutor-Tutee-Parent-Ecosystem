@@ -70,7 +70,7 @@ export default class TuteeForm extends React.Component {
         <View style={styles.wrapper}>
           <Image
             style={styles.image}
-            source={require("../../../../assets/images/logo.png")}
+            source={require("../../../../assets/images/add.png")}
           />
           <Text style={styles.text}>
             Connect with child by entering your child's token!

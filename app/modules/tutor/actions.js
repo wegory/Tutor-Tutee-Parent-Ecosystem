@@ -4,10 +4,11 @@ import { auth } from "../../config/firebase";
 
 // import { AsyncStorage } from "react-native";
 
-export function addAssignment() {
-  api.addAssignment(function(success, error) {
+export function addAssignment(data, successCB, errorCB) {
+  api.addAssignment(data, function(success, error) {
     if (success) {
       console.log("addAssignment Successful");
+      successCB();
     } else if (error) errorCB(error);
   });
 }

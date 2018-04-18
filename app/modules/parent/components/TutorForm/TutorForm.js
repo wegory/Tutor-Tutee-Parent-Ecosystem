@@ -118,7 +118,7 @@ export default class TutorForm extends React.Component {
         <View style={styles.wrapper}>
           <Image
             style={styles.image}
-            source={require("../../../../assets/images/logo.png")}
+            source={require("../../../../assets/images/add.png")}
           />
           <Text style={styles.text}>Connect a tutor to your child!</Text>
           {!isEmpty(this.state.error["general"]) && (

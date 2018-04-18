@@ -1,6 +1,12 @@
 import React from "react";
 
-import { Text, View, TouchableOpacity, Image } from "react-native";
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  Image,
+  ImageBackground
+} from "react-native";
 
 import { Button, SocialIcon, Divider } from "react-native-elements";
 import { Actions } from "react-native-router-flux";
@@ -61,14 +67,17 @@ class Welcome extends React.Component {
     console.log("welcome, props: " + JSON.stringify(this.props));
     return (
       <View style={styles.container}>
-        <View style={styles.topContainer}>
+        <View
+          style={styles.topContainer}
+          // source={require("../../../../assets/images/background.png")}
+        >
           <Image
             style={styles.image}
             // source={{ uri: "" }}
-            source={require("../../../../assets/images/logo.png")}
+            source={require("../../../../assets/images/owl.png")}
           />
           {/* <Image style={styles.image} /> */}
-          <Text style={styles.title}>mADAZZLE</Text>
+          <Text style={styles.title}>[insert pretentious app name]</Text>
         </View>
 
         <View style={styles.bottomContainer}>

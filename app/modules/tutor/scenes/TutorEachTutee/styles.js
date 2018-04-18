@@ -13,6 +13,10 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
 
+  mainContainer: {
+    flex: 1
+  },
+
   contentContainer: {
     flexDirection: "column",
     paddingVertical: 5,

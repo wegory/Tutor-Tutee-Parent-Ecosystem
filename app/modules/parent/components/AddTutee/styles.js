@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
   popout: {
     flexDirection: "column",
     width: 240,
-    height: 320,
+    height: 270,
     backgroundColor: "#FFFFFF",
     borderRadius: 5,
     borderEndColor: "grey",

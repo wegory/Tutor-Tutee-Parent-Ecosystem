@@ -75,44 +75,6 @@ export function addTutor(data, callback) {
     });
 }
 
-// export function getChildrenUID(callback) {
-//   const currentUser = auth.currentUser;
-//   database
-//     .ref("/users/" + currentUser.uid + "/tutee")
-//     .once("value")
-//     .then(function(snapshot) {
-//       // console.log("snapshot: " + JSON.stringify(snapshot));
-//       const exists = snapshot.val() !== null;
-//       console.log("exists: " + exists);
-//       if (exists) {
-//         var uids = snapshot.val();
-//         console.log("uids in getChildren: " + JSON.stringify(uids));
-//         var keys = Object.keys(uids);
-//       }
-//       callback(uids);
-//     })
-//     .catch(error => {
-//       console.log(error);
-//     });
-// }
-
-// export function getChildren() {
-//   getChildrenUID(function(uids) {
-//     console.log("uids in getChildren!!: " + JSON.stringify(uids));
-//     var keys = Object.keys(uids);
-//     const childrenPromises = keys.map((key, index) => {
-//       database.ref("/users/" + key + "/username").on("value", s => s.val());
-//       // .then(function(snapshot) {
-//       //   console.log("snapshot: " + JSON.stringify(snapshot.val()));
-//       //   snapshot.val();
-//       // });
-//     });
-//     Promise.all(childrenPromises).then(collection => {
-//       console.log(JSON.stringify(collection));
-//     });
-//   });
-// }
-
 export function getChildren(callback) {
   const currentUser = auth.currentUser;
   database
@@ -154,39 +116,85 @@ export function getChildren(callback) {
       console.log(error);
     });
 }
-//   database
-//     .ref("/users/" + currentUser.uid + "/tutee")
-//     .once("value")
-//     .then(function(snapshot) {
-//       // console.log("snapshot: " + JSON.stringify(snapshot));
-//       const exists = snapshot.val() !== null;
-//       console.log("exists: " + exists);
-//       if (exists) {
-//         var uids = snapshot.val();
-//         console.log("uids in getChildren: " + JSON.stringify(uids));
-//         var keys = Object.keys(uids);
-//         keys.map((key, index) => {
-//           database
-//             .ref("/users/" + key + "/username")
-//             .once("value")
-//             .then(function(snapshot) {
-//               // const exists = snapshot.val() !== null;
-//               console.log("snapshot: " + JSON.stringify(snapshot.val()));
-//               // console.log("exists: " + exists);
-//               // if (exists) {
-//               collection[`${key}`] = snapshot.val();
-//               // }
-//               console.log("collection in API1: " + JSON.stringify(collection));
-//             })
-//             .catch(error => {
-//               console.log(error);
-//             });
-//         });
-//       }
-//     })
-//     .catch(error => {
-//       console.log(error);
-//     });
-//   console.log("collection in API2: " + JSON.stringify(collection));
-//   return collection;
-// }
+
+export function getChildrenForDisplay(callback) {
+  const currentUser = auth.currentUser;
+  database
+    .ref("/users/" + currentUser.uid + "/tutee")
+    .once("value")
+    .then(function(snapshot) {
+      // console.log("snapshot: " + JSON.stringify(snapshot));
+      const exists = snapshot.val() !== null;
+      console.log("exists: " + exists);
+      if (exists) {
+        var uids = snapshot.val();
+        console.log("uids in getChildren: " + JSON.stringify(uids));
+        var keys = Object.keys(uids);
+        var collection = {};
+        const keysLen = keys.length;
+        keys.map((key, index) => {
+          database
+            .ref("/users/" + key)
+            .once("value")
+            .then(function(snapshot) {
+              // const exists = snapshot.val() !== null;
+              console.log("snapshot: " + JSON.stringify(snapshot.val()));
+              // console.log("exists: " + exists);
+              // if (exists) {
+              collection[`${key}`] = snapshot.val();
+              // }
+              console.log(
+                "collection in API getChildrenForDisplay: " +
+                  JSON.stringify(collection)
+              );
+              if (keysLen === index + 1) {
+                callback(collection);
+              }
+            })
+            .catch(error => {
+              console.log(error);
+            });
+        });
+      }
+    })
+    .catch(error => {
+      console.log(error);
+    });
+}
+
+export function checkAssignmentChanges(childUID, callback) {
+  console.log("checkChanges");
+  database.ref("/assignment/" + childUID).on("value", () => {
+    console.log("changed");
+    callback(true);
+  });
+}
+
+export function checkChildChanges(callback) {
+  const currentUser = auth.currentUser;
+  console.log("checkChanges");
+  database.ref("/users/" + currentUser.uid + "/tutee/").on("value", () => {
+    console.log("changed");
+    callback(true);
+  });
+}
+
+export function getAssignments(childUID, callback) {
+  console.log("getAssigments");
+  const currentUser = auth.currentUser;
+  database
+    .ref("/assignment/" + childUID)
+    .once("value")
+    .then(function(snapshot) {
+      // console.log("snapshot: " + snapshot.val());
+      const exists = snapshot.val() !== null;
+      console.log("exists: " + exists);
+      if (exists) {
+        callback(snapshot.val());
+      }
+      callback(null);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+}
