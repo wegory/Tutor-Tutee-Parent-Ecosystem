@@ -12,14 +12,7 @@ import { Actions } from "react-native-router-flux";
 export default class EachAssignmentThumbnail extends React.Component {
   constructor() {
     super();
-    this.state = {
-      //   modalVisible: false,
-      //   tuteeFormModalVisible: false,
-      //   tutorFormModalVisible: false,
-      //   username: "Loading",
-      //   profileImage: null,
-      //   role: null
-    };
+    this.state = {};
     this.getInitialsFromName = this.getInitialsFromName.bind(this);
   }
 
@@ -38,16 +31,16 @@ export default class EachAssignmentThumbnail extends React.Component {
         <Text style={styles.initials}>{initials}</Text>
       </View>
     );
-    const neutral = (
+    const inProgress = (
       <Image
         style={styles.status}
-        source={require("../../../../assets/images/neutral.png")}
+        source={require("../../../../assets/images/inProgress.png")}
       />
     );
-    const finished = (
+    const done = (
       <Image
         style={styles.status}
-        source={require("../../../../assets/images/finished.png")}
+        source={require("../../../../assets/images/done.png")}
       />
     );
     const overdue = (
@@ -60,15 +53,11 @@ export default class EachAssignmentThumbnail extends React.Component {
     console.log("date format: " + dateFormat);
     var now = new Date();
     now = now.setHours(0, 0, 0, 0);
-    // const bool = now == dateFormat;
-    // console.log("now: " + now);
-    // console.log("dateFormat: " + dateFormat);
-    // console.log("equi?: " + bool);
     const status =
       dateFormat >= now && this.props.done
-        ? finished
+        ? done
         : dateFormat >= now && !this.props.done
-          ? neutral
+          ? inProgress
           : overdue;
 
     return (
@@ -84,12 +73,6 @@ export default class EachAssignmentThumbnail extends React.Component {
           <View style={styles.infoCol2}>{status}</View>
         </View>
         <View style={styles.buttonsContainer}>
-          {/* <TouchableOpacity style={styles.deleteButton}>
-            <Image
-              style={styles.deleteImage}
-              source={require("../../../../assets/images/delete.png")}
-            />
-          </TouchableOpacity> */}
           <TouchableOpacity style={styles.editButton}>
             <Image
               style={styles.editImage}

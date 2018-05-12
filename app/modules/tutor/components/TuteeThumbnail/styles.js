@@ -83,20 +83,17 @@ const styles = StyleSheet.create({
   },
 
   infoCol2: {
-    flex: 1,
+    flex: 1.3,
     flexDirection: "column",
     justifyContent: "center",
-    alignItems: "flex-start"
+    alignItems: "center"
   },
 
   infoButton: {
     justifyContent: "center",
     alignItems: "center",
-    width: 70,
-    height: 25,
-    borderRadius: 3,
-    backgroundColor: "#81C054",
-    elevation: 3
+    width: 30,
+    height: 30
   },
 
   buttonText: {

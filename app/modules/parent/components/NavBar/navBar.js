@@ -155,7 +155,13 @@ class NavBar extends React.Component {
         <Text style={styles.initials}>{initials}</Text>
       </View>
     );
-    const displayImage = <Image style={styles.image} source={profileImage} />;
+    // const displayImage = <Image style={styles.image} source={profileImage} />;
+    const displayImage = (
+      <Image
+        style={styles.image}
+        source={require("../../../../assets/images/profilePicture.png")}
+      />
+    );
     const display =
       typeof this.state.profileImage == null ? displayInitials : displayImage;
     return (
@@ -197,9 +203,13 @@ class NavBar extends React.Component {
                 <View style={styles.imageContainer}>
                   {/* <View style={styles.imagePlaceholder} /> */}
                   {/* {displayImage} */}
-                  {this.state.profileImage == null
+                  <Image
+                    style={styles.image}
+                    source={require("../../../../assets/images/profilePicture.png")}
+                  />
+                  {/* {this.state.profileImage == null
                     ? displayInitials
-                    : displayImage}
+                    : displayImage} */}
                   {/* <Image
                 style={styles.image}
                 source={{
@@ -229,7 +239,7 @@ class NavBar extends React.Component {
                   >
                     <Text style={styles.menuContent}>Add Tutor</Text>
                   </TouchableOpacity>
-                  <TouchableOpacity onPress={() => Actions.Settings()}>
+                  <TouchableOpacity>
                     <Text style={styles.menuContent}>Settings</Text>
                   </TouchableOpacity>
                   <TouchableOpacity onPress={this.onSignOut}>

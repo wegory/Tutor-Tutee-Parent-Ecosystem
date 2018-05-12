@@ -14,17 +14,32 @@ import store from "../../../../redux/store";
 import styles from "./styles";
 import { getChildrenForDisplay, checkChildChanges } from "../../api";
 import ChildThumbnail from "../../components/ChildThumbnail/ChildThumbnail";
+import AddTuition from "../../components/AddTuition/AddTuition";
 
 export default class ParentChild extends React.Component {
   constructor() {
     super();
     this.state = {
-      collectionChildren: {}
+      collectionChildren: {},
+      tuitionFormModalVisible: false,
+      childUID: "NA",
+      childProfileImage: "NA",
+      childUsername: "NA"
     };
 
     this.onGetChildren = this.onGetChildren.bind(this);
     this.setChildren = this.setChildren.bind(this);
     this.renderThumbnail = this.renderThumbnail.bind(this);
+    this.getScheduleModal = this.getScheduleModal.bind(this);
+  }
+
+  getScheduleModal(childUID, childProfileImage, childUsername) {
+    this.setState({
+      tuitionFormModalVisible: !this.state.tuitionFormModalVisible,
+      childUID: childUID,
+      childProfileImage: childProfileImage,
+      childUsername: childUsername
+    });
   }
 
   componentDidMount() {
@@ -37,10 +52,6 @@ export default class ParentChild extends React.Component {
       }
     });
   }
-
-  // componentWillMount() {
-
-  // }
 
   setChildren(collectionChildren) {
     this.setState({ collectionChildren: collectionChildren });
@@ -70,6 +81,7 @@ export default class ParentChild extends React.Component {
           profileImage={thumbnails[`${key}`].profileImage}
           username={thumbnails[`${key}`].username}
           childUID={key}
+          controlVisible={this.getScheduleModal}
         />
       );
     });
@@ -87,16 +99,25 @@ export default class ParentChild extends React.Component {
     console.log(
       "parentChild state: " + JSON.stringify(this.state.collectionChildren)
     );
-    console.log(store.getState());
+    console.log("parentChild state: ");
     return (
-      <ScrollView
-        contentContainerStyle={styles.contentContainer}
-        keyboardDismissMode="on-drag"
-        alwaysBounceVertical={true}
-        endFillColor="#EEEEEE"
-      >
-        {this.renderThumbnail()}
-      </ScrollView>
+      <View>
+        <ScrollView
+          contentContainerStyle={styles.contentContainer}
+          keyboardDismissMode="on-drag"
+          alwaysBounceVertical={true}
+          endFillColor="#EEEEEE"
+        >
+          {this.renderThumbnail()}
+        </ScrollView>
+        <AddTuition
+          tuitionFormModalVisible={this.state.tuitionFormModalVisible}
+          childUID={this.state.childUID}
+          controlVisible={this.getScheduleModal}
+          childUsername={this.state.childUsername}
+          childProfileImage={this.state.childProfileImage}
+        />
+      </View>
     );
   }
 }

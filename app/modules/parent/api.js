@@ -198,3 +198,88 @@ export function getAssignments(childUID, callback) {
       console.log(error);
     });
 }
+
+export function getTutorsForDisplay(childUID, callback) {
+  console.log("getTutorsForDisplay API");
+  console.log("childUID: " + childUID);
+  database
+    .ref("/users/" + childUID + "/tutor/")
+    .once("value")
+    .then(function(snapshot) {
+      const exists = snapshot.val() !== null;
+      console.log("exists: " + exists);
+      if (exists) {
+        var uids = snapshot.val();
+        console.log("uids in getTutors: " + JSON.stringify(uids));
+        var keys = Object.keys(uids);
+        var collection = {};
+        const keysLen = keys.length;
+        keys.map((key, index) => {
+          database
+            .ref("/users/" + key)
+            .once("value")
+            .then(function(snapshot) {
+              console.log("snapshot: " + JSON.stringify(snapshot.val()));
+              collection[`${key}`] = snapshot.val();
+              console.log(
+                "collection in API getTutorsForDisplay: " +
+                  JSON.stringify(collection)
+              );
+              if (keysLen === index + 1) {
+                callback(collection);
+              }
+            })
+            .catch(error => {
+              console.log(error);
+            });
+        });
+      }
+      callback(null);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+}
+
+export function addTuition(data, callback) {
+  console.log("addTuition: " + JSON.stringify(data));
+  const currentUser = auth.currentUser;
+  const tuteeRef = database
+    .ref("/tuition/" + data.childUID + "/" + data.tutorUID)
+    .push(data);
+  var parentKey = tuteeRef.key;
+  var parentRef = database
+    .ref("/tuition/" + currentUser.uid + "/" + parentKey)
+    .set(data);
+  tuteeRef
+    .then(() => parentRef.then(() => callback(true))) //return
+    .catch(callback(false));
+}
+
+export function checkSessionChanges(callback) {
+  console.log("checkSessionChanges");
+  const currentUser = auth.currentUser;
+  database.ref("/tuition/" + currentUser.uid).on("value", () => {
+    console.log("sessionschanged");
+    callback(true);
+  });
+}
+
+export function getSessions(callback) {
+  console.log("getSessions");
+  const currentUser = auth.currentUser;
+  database
+    .ref("/tuition/" + currentUser.uid)
+    .once("value")
+    .then(function(snapshot) {
+      const exists = snapshot.val() !== null;
+      console.log("exists: " + exists);
+      if (exists) {
+        callback(snapshot.val());
+      }
+      callback(null);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+}

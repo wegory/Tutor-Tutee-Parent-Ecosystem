@@ -50,15 +50,13 @@ export default class TuteeThumbnail extends React.Component {
             <View style={styles.infoCol1}>
               <Text style={styles.infoTitle}>{this.props.username}</Text>
               <Text style={styles.infoTutor}>Upcoming Tuition:</Text>
-              <Text style={styles.infoDueDate}>None</Text>
+              <Text style={styles.infoDueDate}>04 May 18, 04:30pm</Text>
             </View>
             <View style={styles.infoCol2}>
-              {/* <TouchableOpacity
+              <Image
                 style={styles.infoButton}
-                onPress={() => addAssignment()}
-              >
-                <Text style={styles.buttonText}>Schedule</Text>
-              </TouchableOpacity> */}
+                source={require("../../../../assets/images/done.png")}
+              />
             </View>
           </View>
         </View>

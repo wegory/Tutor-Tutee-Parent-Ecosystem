@@ -39,16 +39,16 @@ export default class EachAssignmentThumbnail extends React.Component {
         <Text style={styles.initials}>{initials}</Text>
       </View>
     );
-    const neutral = (
+    const inProgress = (
       <Image
         style={styles.status}
-        source={require("../../../../assets/images/neutral.png")}
+        source={require("../../../../assets/images/inProgress.png")}
       />
     );
-    const finished = (
+    const done = (
       <Image
         style={styles.status}
-        source={require("../../../../assets/images/finished.png")}
+        source={require("../../../../assets/images/done.png")}
       />
     );
     const overdue = (
@@ -65,9 +65,9 @@ export default class EachAssignmentThumbnail extends React.Component {
 
     const status =
       dateFormat >= now && this.props.done
-        ? finished
+        ? done
         : dateFormat >= now && !this.props.done
-          ? neutral
+          ? inProgress
           : overdue;
 
     const displayImage = <Image style={styles.image} source={profileImage} />;

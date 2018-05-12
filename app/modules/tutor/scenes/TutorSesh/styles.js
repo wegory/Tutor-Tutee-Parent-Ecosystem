@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   },
 
   infoCol2: {
-    flex: 1,
+    flex: 1.25,
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "flex-start"
@@ -99,10 +99,10 @@ const styles = StyleSheet.create({
   infoButton: {
     justifyContent: "center",
     alignItems: "center",
-    width: 55,
+    width: 60,
     height: 25,
     borderRadius: 3,
-    backgroundColor: "#81C054",
+    backgroundColor: "#FF553F",
     elevation: 3
   },
 

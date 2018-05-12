@@ -110,6 +110,10 @@ const styles = StyleSheet.create({
     fontSize: fontSize.regular - 2,
     fontFamily: fontFamily.bold,
     color: color.white
+  },
+
+  mainContainer: {
+    flex: 1
   }
 });
 

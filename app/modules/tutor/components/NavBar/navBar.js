@@ -37,7 +37,8 @@ class NavBar extends React.Component {
       modalVisible: false,
       username: "Loading",
       profileImage: null,
-      role: null
+      role: null,
+      tutorKey: null
     };
     this.setModalVisible = this.setModalVisible.bind(this);
     this.onSignOut = this.onSignOut.bind(this);
@@ -48,6 +49,7 @@ class NavBar extends React.Component {
     this.getInitialsFromName = this.getInitialsFromName.bind(this);
     this.getRole = this.getRole.bind(this);
     this.setRole = this.setRole.bind(this);
+    this.getTutorKey = this.getTutorKey.bind(this);
   }
 
   setName(name) {
@@ -66,6 +68,7 @@ class NavBar extends React.Component {
     this.getUsername();
     this.getProfileImage();
     this.getRole();
+    this.getTutorKey();
   }
 
   async getUsername() {
@@ -100,6 +103,18 @@ class NavBar extends React.Component {
         res = JSON.parse(res);
         console.log("res: " + JSON.stringify(res));
         this.setRole(res.user.role);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  async getTutorKey() {
+    AsyncStorage.getItem("user")
+      .then(res => {
+        res = JSON.parse(res);
+        console.log("res: " + JSON.stringify(res));
+        this.setState({ tutorKey: res.user.addTutorKey });
       })
       .catch(error => {
         console.log(error);
@@ -182,8 +197,8 @@ class NavBar extends React.Component {
             </View>
             <View style={styles.menuContainer}>
               <Text style={styles.name}>{this.state.username}</Text>
-
-              <TouchableOpacity onPress={() => Actions.Settings()}>
+              <Text style={styles.key}>Key: {this.state.tutorKey}</Text>
+              <TouchableOpacity>
                 <Text style={styles.menuContent}>Settings</Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={this.onSignOut}>

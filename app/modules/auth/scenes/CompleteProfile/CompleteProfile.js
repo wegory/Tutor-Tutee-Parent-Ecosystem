@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { actions as auth } from "../../index";
 const { createUser } = auth;
 
-import Form from "../../components/Form";
+import CompleteProfileForm from "../../components/CompleteProfileForm";
 
 const fields = [
   {
@@ -16,22 +16,21 @@ const fields = [
     secureTextEntry: false,
     value: "",
     type: "text"
-  },
-  {
-    key: "role",
-    label: "Role",
-    placeholder: "Role",
-    autoFocus: false,
-    secureTextEntry: false,
-    value: "",
-    type: "radio"
   }
+  // {
+  //   key: "role",
+  //   label: "Role",
+  //   placeholder: "Role",
+  //   autoFocus: false,
+  //   secureTextEntry: false,
+  //   value: "",
+  //   type: "radio"
+  // }
 ];
 
 const error = {
   general: "",
-  username: "",
-  role: ""
+  username: ""
 };
 
 class CompleteProfile extends React.Component {
@@ -91,7 +90,7 @@ class CompleteProfile extends React.Component {
 
   render() {
     return (
-      <Form
+      <CompleteProfileForm
         fields={fields}
         showLabel={false}
         onSubmit={this.onSubmit}

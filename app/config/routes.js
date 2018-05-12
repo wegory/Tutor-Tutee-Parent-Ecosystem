@@ -98,7 +98,7 @@ export default class extends React.Component {
     // const username = this.state.username;
     // console.log(this.state.role);
     return (
-      <Router>
+      <Router duration={400}>
         <Scene
           key="root"
           hideNavBar
@@ -118,7 +118,7 @@ export default class extends React.Component {
             <Scene
               key="CompleteProfile"
               component={CompleteProfile}
-              title="Select Username"
+              title="Complete Profile"
               back={false}
             />
             <Scene key="Login" component={Login} title="Login" />
@@ -212,7 +212,7 @@ export default class extends React.Component {
                 component={ParentSesh}
                 title="Schedule"
                 initial={false}
-                type={ActionConst.REPLACE}
+                type={ActionConst.JUMP}
                 hideNavBar
               />
 
@@ -221,7 +221,7 @@ export default class extends React.Component {
                 component={ParentPayment}
                 title="Payment"
                 initial={false}
-                type={ActionConst.REPLACE}
+                type={ActionConst.JUMP}
                 hideNavBar
               />
             </Scene>

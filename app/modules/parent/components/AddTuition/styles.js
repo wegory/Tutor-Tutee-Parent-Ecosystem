@@ -12,13 +12,6 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   },
 
-  tuteeNavBarContainer: {
-    width: "100%",
-    backgroundColor: "#81C054",
-    height: normalize(70),
-    flexDirection: "row"
-  },
-
   menu: {
     width: 64,
     color: color.white,
@@ -80,7 +73,7 @@ const styles = StyleSheet.create({
   },
 
   imageContainer: {
-    flex: 1.2,
+    flex: 1,
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center"
@@ -89,9 +82,9 @@ const styles = StyleSheet.create({
   image: {
     // marginTop: 150,
     // marginBottom: 10,
-    width: 80,
-    height: 80,
-    borderRadius: 80 / 2,
+    width: 65,
+    height: 65,
+    borderRadius: 65 / 2,
     backgroundColor: color.white
     // resizeMode
   },
@@ -103,18 +96,8 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 80 / 2,
-    backgroundColor: "#FFA500"
+    backgroundColor: "#57C960"
     // resizeMode
-  },
-
-  key: {
-    marginTop: 3,
-    marginBottom: 0,
-    fontSize: fontSize.regular - 2,
-    lineHeight: fontSize.regular - 2,
-    fontFamily: fontFamily.regular,
-    color: color.black,
-    letterSpacing: 2
   },
 
   initials: {
@@ -140,8 +123,8 @@ const styles = StyleSheet.create({
 
   popout: {
     flexDirection: "column",
-    width: 230,
-    height: 260,
+    width: windowWidth - 50,
+    height: 330,
     backgroundColor: "#FFFFFF",
     borderRadius: 5,
     borderEndColor: "grey",

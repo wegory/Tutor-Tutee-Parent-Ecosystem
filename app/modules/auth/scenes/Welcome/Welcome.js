@@ -77,7 +77,7 @@ class Welcome extends React.Component {
             source={require("../../../../assets/images/owl.png")}
           />
           {/* <Image style={styles.image} /> */}
-          <Text style={styles.title}>[insert pretentious app name]</Text>
+          <Text style={styles.title}>howl</Text>
         </View>
 
         <View style={styles.bottomContainer}>

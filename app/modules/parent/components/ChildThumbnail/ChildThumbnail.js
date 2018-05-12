@@ -13,8 +13,6 @@ export default class ChildThumbnail extends React.Component {
   constructor() {
     super();
     this.state = {
-      //   modalVisible: false,
-      //   tuteeFormModalVisible: false,
       //   tutorFormModalVisible: false,
       //   username: "Loading",
       //   profileImage: null,
@@ -32,6 +30,7 @@ export default class ChildThumbnail extends React.Component {
 
   render() {
     console.log("ChildThumbnail");
+    console.log("thumbnail props: " + JSON.stringify(this.props));
     const initials = this.getInitialsFromName(this.state.username);
     const profileImage = { uri: this.props.profileImage };
     const displayInitials = (
@@ -57,12 +56,18 @@ export default class ChildThumbnail extends React.Component {
             <View style={styles.infoCol1}>
               <Text style={styles.infoTitle}>{this.props.username}</Text>
               <Text style={styles.infoTutor}>Upcoming Tuition:</Text>
-              <Text style={styles.infoDueDate}>None</Text>
+              <Text style={styles.infoDueDate}>02 May 18, 8pm</Text>
             </View>
             <View style={styles.infoCol2}>
               <TouchableOpacity
                 style={styles.infoButton}
-                onPress={() => addAssignment()}
+                onPress={() =>
+                  this.props.controlVisible(
+                    this.props.childUID,
+                    this.props.profileImage,
+                    this.props.username
+                  )
+                }
               >
                 <Text style={styles.buttonText}>Schedule</Text>
               </TouchableOpacity>

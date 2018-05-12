@@ -79,6 +79,16 @@ const styles = StyleSheet.create({
     letterSpacing: 2
   },
 
+  key: {
+    marginTop: 3,
+    marginBottom: 0,
+    fontSize: fontSize.regular - 2,
+    lineHeight: fontSize.regular - 2,
+    fontFamily: fontFamily.regular,
+    color: color.black,
+    letterSpacing: 2
+  },
+
   imageContainer: {
     flex: 1.2,
     flexDirection: "column",
@@ -131,7 +141,7 @@ const styles = StyleSheet.create({
   popout: {
     flexDirection: "column",
     width: 230,
-    height: 250,
+    height: 260,
     backgroundColor: "#FFFFFF",
     borderRadius: 5,
     borderEndColor: "grey",

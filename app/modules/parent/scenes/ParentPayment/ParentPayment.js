@@ -10,7 +10,7 @@ var {
 import { Button } from "react-native-elements";
 import { Actions } from "react-native-router-flux";
 import { connect } from "react-redux";
-
+import ActionButton from "react-native-action-button";
 import styles from "./styles";
 
 import { addAssignment } from "../../actions";
@@ -36,76 +36,91 @@ export default class ParentPayment extends React.Component {
   // }
   render() {
     return (
-      <ScrollView
-        contentContainerStyle={styles.contentContainer}
-        keyboardDismissMode="on-drag"
-        alwaysBounceVertical={true}
-        endFillColor="#EEEEEE"
-      >
-        <View style={styles.taskContainer}>
-          <View style={styles.imageContainer}>
-            <Image
-              style={styles.image}
-              source={require("../../../../assets/images/profilePicture.png")}
-            />
-          </View>
-          <View style={styles.infoContainer}>
-            <View style={styles.infoCol1}>
-              <Text style={styles.infoTitle}>Problem 1 Ex 5a, 6b, 9a</Text>
-              <Text style={styles.infoTutor}>Set by Mr Chia</Text>
-              <Text style={styles.infoDueDate}>Due on: 5th March</Text>
+      <View style={styles.mainContainer}>
+        <ScrollView
+          contentContainerStyle={styles.contentContainer}
+          keyboardDismissMode="on-drag"
+          alwaysBounceVertical={true}
+          endFillColor="#EEEEEE"
+        >
+          <View style={styles.taskContainer}>
+            <View style={styles.imageContainer}>
+              <Image
+                style={styles.image}
+                source={require("../../../../assets/images/jeremy.png")}
+              />
             </View>
-            <View style={styles.infoCol2}>
-              <TouchableOpacity
-                style={styles.infoButton}
-                onPress={() => addAssignment()}
-              >
-                <Text style={styles.buttonText}>Done</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-        <View style={styles.taskContainer}>
-          <View style={styles.imageContainer}>
-            <Image
-              style={styles.image}
-              source={require("../../../../assets/images/profilePicture.png")}
-            />
-          </View>
-          <View style={styles.infoContainer}>
-            <View style={styles.infoCol1}>
-              <Text style={styles.infoTitle}>Problem 1 Ex 5a, 6b, 9a</Text>
-              <Text style={styles.infoTutor}>Set by Mr Chia</Text>
-              <Text style={styles.infoDueDate}>Due on: 5th March</Text>
-            </View>
-            <View style={styles.infoCol2}>
-              <TouchableOpacity style={styles.infoButton}>
-                <Text style={styles.buttonText}>Done</Text>
-              </TouchableOpacity>
+            <View style={styles.infoContainer}>
+              <View style={styles.infoCol1}>
+                <Text style={styles.infoTitle}>Jeremy Yew</Text>
+                <Text style={styles.infoTutor}>Paid for May, $200</Text>
+                <Text style={styles.infoDueDate}>Created on: 5th March</Text>
+              </View>
+              <View style={styles.infoCol2}>
+                <TouchableOpacity
+                  style={styles.infoButton}
+                  onPress={() => addAssignment()}
+                >
+                  <Text style={styles.buttonText}>Edit</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
-        </View>
-        <View style={styles.taskContainer}>
-          <View style={styles.imageContainer}>
-            <Image
-              style={styles.image}
-              source={require("../../../../assets/images/profilePicture.png")}
-            />
-          </View>
-          <View style={styles.infoContainer}>
-            <View style={styles.infoCol1}>
-              <Text style={styles.infoTitle}>Problem 1 Ex 5a, 6b, 9a</Text>
-              <Text style={styles.infoTutor}>Set by Mr Chia</Text>
-              <Text style={styles.infoDueDate}>Due on: 5th March</Text>
+          <View style={styles.taskContainer}>
+            <View style={styles.imageContainer}>
+              <Image
+                style={styles.image}
+                source={require("../../../../assets/images/bradPitt.png")}
+              />
             </View>
-            <View style={styles.infoCol2}>
-              <TouchableOpacity style={styles.infoButton}>
-                <Text style={styles.buttonText}>Done</Text>
-              </TouchableOpacity>
+            <View style={styles.infoContainer}>
+              <View style={styles.infoCol1}>
+                <Text style={styles.infoTitle}>Brad Pitt</Text>
+                <Text style={styles.infoTutor}>Paid for April, $500</Text>
+                <Text style={styles.infoDueDate}>Created on: 5th March</Text>
+              </View>
+              <View style={styles.infoCol2}>
+                <TouchableOpacity
+                  style={styles.infoButton}
+                  onPress={() => addAssignment()}
+                >
+                  <Text style={styles.buttonText}>Edit</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
-        </View>
-      </ScrollView>
+          <View style={styles.taskContainer}>
+            <View style={styles.imageContainer}>
+              <Image
+                style={styles.image}
+                source={require("../../../../assets/images/jeremy.png")}
+              />
+            </View>
+            <View style={styles.infoContainer}>
+              <View style={styles.infoCol1}>
+                <Text style={styles.infoTitle}>Jeremy</Text>
+                <Text style={styles.infoTutor}>Paid for May, $500</Text>
+                <Text style={styles.infoDueDate}>Created on: 5th March</Text>
+              </View>
+              <View style={styles.infoCol2}>
+                <TouchableOpacity
+                  style={styles.infoButton}
+                  onPress={() => addAssignment()}
+                >
+                  <Text style={styles.buttonText}>Edit</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        </ScrollView>
+        <ActionButton
+          size={52}
+          offsetY={20}
+          offsetX={25}
+          position="right"
+          buttonColor="rgba(231,76,60,1)"
+        />
+      </View>
     );
   }
 }

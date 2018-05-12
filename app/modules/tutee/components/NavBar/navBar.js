@@ -37,7 +37,8 @@ class NavBar extends React.Component {
       modalVisible: false,
       username: "Loading",
       profileImage: null,
-      role: null
+      role: null,
+      tuteeKey: null
     };
     this.setModalVisible = this.setModalVisible.bind(this);
     this.onSignOut = this.onSignOut.bind(this);
@@ -48,6 +49,7 @@ class NavBar extends React.Component {
     this.getInitialsFromName = this.getInitialsFromName.bind(this);
     this.getRole = this.getRole.bind(this);
     this.setRole = this.setRole.bind(this);
+    this.getTuteeKey = this.getTuteeKey.bind(this);
   }
 
   setName(name) {
@@ -66,6 +68,7 @@ class NavBar extends React.Component {
     this.getUsername();
     this.getProfileImage();
     this.getRole();
+    this.getTuteeKey();
   }
 
   async getUsername() {
@@ -106,6 +109,18 @@ class NavBar extends React.Component {
       });
   }
 
+  async getTuteeKey() {
+    AsyncStorage.getItem("user")
+      .then(res => {
+        res = JSON.parse(res);
+        console.log("res: " + JSON.stringify(res));
+        this.setState({ tuteeKey: res.user.addTuteeKey });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
   setModalVisible(visible) {
     this.setState({ modalVisible: visible });
   }
@@ -132,10 +147,14 @@ class NavBar extends React.Component {
   render() {
     console.log(this.state.username);
     // console.log(this.state.profileImage);
-    console.log("role: " + this.state.role);
+
     const initials = this.getInitialsFromName(this.state.username);
     // console.log("initials: " + initials);
-    const profileImage = { uri: this.state.profileImage };
+    const profileImage = {
+      uri: this.state.profileImage
+    };
+
+    console.log("profileImage: " + JSON.stringify(profileImage));
     const displayInitials = (
       <View style={styles.imageWithInitials}>
         <Text style={styles.initials}>{initials}</Text>
@@ -182,8 +201,8 @@ class NavBar extends React.Component {
             </View>
             <View style={styles.menuContainer}>
               <Text style={styles.name}>{this.state.username}</Text>
-
-              <TouchableOpacity onPress={() => Actions.Settings()}>
+              <Text style={styles.key}>Key: {this.state.tuteeKey}</Text>
+              <TouchableOpacity>
                 <Text style={styles.menuContent}>Settings</Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={this.onSignOut}>

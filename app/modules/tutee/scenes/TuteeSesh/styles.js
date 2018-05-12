@@ -37,7 +37,9 @@ const styles = StyleSheet.create({
 
   imageContainer: {
     flex: 1,
-    marginLeft: 15
+    marginLeft: 15,
+    flexDirection: "row",
+    alignItems: "center"
   },
 
   infoContainer: {
@@ -48,12 +50,12 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
 
-  image: {
-    height: 60,
-    width: 60,
-    borderRadius: 60 / 2,
-    resizeMode
-  },
+  // image: {
+  //   height: 60,
+  //   width: 60,
+  //   borderRadius: 60 / 2,
+  //   resizeMode
+  // },
 
   infoTitle: {
     // marginTop: 10,
@@ -83,14 +85,14 @@ const styles = StyleSheet.create({
   },
 
   infoCol1: {
-    flex: 2.7,
+    flex: 3,
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "flex-start"
   },
 
   infoCol2: {
-    flex: 1,
+    flex: 1.4,
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "flex-start"
@@ -99,11 +101,25 @@ const styles = StyleSheet.create({
   infoButton: {
     justifyContent: "center",
     alignItems: "center",
-    width: 55,
+    width: 60,
     height: 25,
     borderRadius: 3,
-    backgroundColor: "#81C054",
+    backgroundColor: "#FF553F",
     elevation: 3
+  },
+
+  image1: {
+    height: 60,
+    width: 60,
+    borderRadius: 60 / 2,
+    resizeMode
+  },
+
+  image2: {
+    height: 60,
+    width: 60,
+    borderRadius: 60 / 2,
+    resizeMode
   },
 
   buttonText: {

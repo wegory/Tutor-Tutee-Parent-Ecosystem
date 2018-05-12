@@ -46,22 +46,22 @@ export default class TutorPayment extends React.Component {
           <View style={styles.imageContainer}>
             <Image
               style={styles.image}
-              source={require("../../../../assets/images/profilePicture.png")}
+              source={require("../../../../assets/images/juliette.jpg")}
             />
           </View>
           <View style={styles.infoContainer}>
             <View style={styles.infoCol1}>
-              <Text style={styles.infoTitle}>Problem 1 Ex 5a, 6b, 9a</Text>
-              <Text style={styles.infoTutor}>Set by Mr Chia</Text>
-              <Text style={styles.infoDueDate}>Due on: 5th March</Text>
+              <Text style={styles.infoTitle}>Juliette Chia</Text>
+              <Text style={styles.infoTutor}>Paid for May, $200</Text>
+              <Text style={styles.infoDueDate}>Created on: 5th March</Text>
             </View>
             <View style={styles.infoCol2}>
-              <TouchableOpacity
+              {/* <TouchableOpacity
                 style={styles.infoButton}
                 onPress={() => addAssignment()}
               >
-                <Text style={styles.buttonText}>Done</Text>
-              </TouchableOpacity>
+                <Text style={styles.buttonText}>Edit</Text>
+              </TouchableOpacity> */}
             </View>
           </View>
         </View>
@@ -69,19 +69,22 @@ export default class TutorPayment extends React.Component {
           <View style={styles.imageContainer}>
             <Image
               style={styles.image}
-              source={require("../../../../assets/images/profilePicture.png")}
+              source={require("../../../../assets/images/aaron.jpg")}
             />
           </View>
           <View style={styles.infoContainer}>
             <View style={styles.infoCol1}>
-              <Text style={styles.infoTitle}>Problem 1 Ex 5a, 6b, 9a</Text>
-              <Text style={styles.infoTutor}>Set by Mr Chia</Text>
-              <Text style={styles.infoDueDate}>Due on: 5th March</Text>
+              <Text style={styles.infoTitle}>Aaron Pang</Text>
+              <Text style={styles.infoTutor}>Paid for April, $200</Text>
+              <Text style={styles.infoDueDate}>Created on: 28 April</Text>
             </View>
             <View style={styles.infoCol2}>
-              <TouchableOpacity style={styles.infoButton}>
-                <Text style={styles.buttonText}>Done</Text>
-              </TouchableOpacity>
+              {/* <TouchableOpacity
+                style={styles.infoButton}
+                onPress={() => addAssignment()}
+              >
+                <Text style={styles.buttonText}>Edit</Text>
+              </TouchableOpacity> */}
             </View>
           </View>
         </View>
@@ -89,19 +92,22 @@ export default class TutorPayment extends React.Component {
           <View style={styles.imageContainer}>
             <Image
               style={styles.image}
-              source={require("../../../../assets/images/profilePicture.png")}
+              source={require("../../../../assets/images/juliette.jpg")}
             />
           </View>
           <View style={styles.infoContainer}>
             <View style={styles.infoCol1}>
-              <Text style={styles.infoTitle}>Problem 1 Ex 5a, 6b, 9a</Text>
-              <Text style={styles.infoTutor}>Set by Mr Chia</Text>
-              <Text style={styles.infoDueDate}>Due on: 5th March</Text>
+              <Text style={styles.infoTitle}>Juliette Chia</Text>
+              <Text style={styles.infoTutor}>Paid for April, $500</Text>
+              <Text style={styles.infoDueDate}>Created on: 27 April</Text>
             </View>
             <View style={styles.infoCol2}>
-              <TouchableOpacity style={styles.infoButton}>
-                <Text style={styles.buttonText}>Done</Text>
-              </TouchableOpacity>
+              {/* <TouchableOpacity
+                style={styles.infoButton}
+                onPress={() => addAssignment()}
+              >
+                <Text style={styles.buttonText}>Edit</Text>
+              </TouchableOpacity> */}
             </View>
           </View>
         </View>
